@@ -17,6 +17,7 @@ import Root from "./Root/Root";
 import Home from "./Component/Home/Home";
 import Login from "./Component/Login/Login";
 import Register from "./Component/Register/Register";
+import InsideHome from "./Component/InsideHome/InsideHome";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: (
+          <Home>
+            {/* <div>Sohel</div> */}
+            <InsideHome></InsideHome>
+          </Home>
+        ),
       },
       {
         path: "/login",
