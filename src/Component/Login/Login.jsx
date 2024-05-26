@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+  console.log(loginUser);
+
   const handleLogSubmit = (e) => {
     e.preventDefault();
 
@@ -8,6 +12,8 @@ const Login = () => {
     const password = e.target.password.value;
 
     console.log(email, password);
+
+    loginUser(email, password);
   };
   return (
     <div className="w-[40%] min-w-[500px] mx-auto border-2 border-red-500 p-5">

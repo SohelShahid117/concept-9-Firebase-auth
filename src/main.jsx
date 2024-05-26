@@ -1,14 +1,3 @@
-// import React from 'react'
-// import ReactDOM from 'react-dom/client'
-// import App from './App.jsx'
-// import './index.css'
-
-// ReactDOM.createRoot(document.getElementById('root')).render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-// )
-
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -17,7 +6,7 @@ import Root from "./Root/Root";
 import Home from "./Component/Home/Home";
 import Login from "./Component/Login/Login";
 import Register from "./Component/Register/Register";
-import InsideHome from "./Component/InsideHome/InsideHome";
+import AuthProvider from "./Component/AuthProvider/AuthProvider";
 
 const router = createBrowserRouter([
   {
@@ -27,12 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <Home>
-            {/* <div>Sohel</div> */}
-            <InsideHome></InsideHome>
-          </Home>
-        ),
+        element: <Home></Home>,
       },
       {
         path: "/login",
@@ -48,6 +32,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

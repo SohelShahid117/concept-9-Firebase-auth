@@ -1,19 +1,15 @@
-import React, { createContext, useState } from "react";
-
-export const HomeContext = createContext(null);
+import React, { useContext } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Home = (data) => {
   // console.log(data);
   // console.log(data.children);
-  const [homeData, setHomeData] = useState("nJoy Remote Job from Home");
+  const user = useContext(AuthContext);
+  console.log(user);
   return (
     <div>
       <h2>This is home</h2>
-      {/* {data.children}
-      {homeData} */}
-      <HomeContext.Provider value={homeData}>
-        {data.children}
-      </HomeContext.Provider>
+      {data.children}
     </div>
   );
 };
