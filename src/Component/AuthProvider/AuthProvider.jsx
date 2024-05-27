@@ -9,31 +9,33 @@ export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   //   console.log(children);
-  //   const [user, setUser] = useState("user akn nai");
+  const [user, setUser] = useState(null);
 
   const registerUser = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        console.log(result.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    return createUserWithEmailAndPassword(auth, email, password);
+    // .then((result) => {
+    //   console.log(result.user);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
   };
 
   const loginUser = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        console.log(result.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    return signInWithEmailAndPassword(auth, email, password);
+    // .then((result) => {
+    //   console.log(result.user);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
   };
 
   const AuthInfo = {
     registerUser,
     loginUser,
+    user,
+    setUser,
   };
   return (
     <div>

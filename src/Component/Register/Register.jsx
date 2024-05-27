@@ -3,7 +3,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 const Register = () => {
   // const AuthInfo = useContext(AuthContext);
   // console.log(AuthInfo);
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, setUser } = useContext(AuthContext);
   console.log(registerUser);
   const [error, setError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -16,7 +16,6 @@ const Register = () => {
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
     console.log(name, photo, email, password, confirmPassword);
-    registerUser(email, password);
 
     if (!/@gmail\.com$/.test(email)) {
       setEmailError("email address must end with @gmail.com");
@@ -40,6 +39,11 @@ const Register = () => {
     }
     setError("");
     setEmailError("");
+
+    registerUser(email, password)
+      .then((result) => setUser(result.user))
+      // .catch((error) => console.log(error));
+      .catch((error) => setError(error.message));
   };
   return (
     <div className="w-[40%] min-w-[500px] mx-auto border-2 border-red-500 p-5">
