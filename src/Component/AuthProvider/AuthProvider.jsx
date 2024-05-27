@@ -1,6 +1,9 @@
 import {
+  FacebookAuthProvider,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 import React, { createContext, useState } from "react";
 import { auth } from "./../../Firebase/Firebase.init";
@@ -30,12 +33,23 @@ const AuthProvider = ({ children }) => {
     //   console.log(error);
     // });
   };
+  const googleProvider = new GoogleAuthProvider();
+  const googleLogin = () => {
+    return signInWithPopup(auth, googleProvider);
+  };
+
+  const fbProvider = new FacebookAuthProvider();
+  const fbLogin = () => {
+    return signInWithPopup(auth, fbProvider);
+  };
 
   const AuthInfo = {
     registerUser,
     loginUser,
     user,
     setUser,
+    googleLogin,
+    fbLogin,
   };
   return (
     <div>
