@@ -71,7 +71,7 @@ const Navbar = () => {
         {user && (
           <>
             <span>{user.email}</span>
-            <button className="btn btn-primary" onClick={logOut}>
+            <button className="btn btn-secondary" onClick={logOut}>
               Logout
             </button>
           </>
