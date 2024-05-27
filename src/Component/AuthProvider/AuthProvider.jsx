@@ -2,10 +2,12 @@ import {
   FacebookAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { auth } from "./../../Firebase/Firebase.init";
 
 export const AuthContext = createContext(null);
@@ -43,6 +45,10 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, fbProvider);
   };
 
+  const logOut = () => {
+    return signOut(auth);
+  };
+
   const AuthInfo = {
     registerUser,
     loginUser,
@@ -50,7 +56,17 @@ const AuthProvider = ({ children }) => {
     setUser,
     googleLogin,
     fbLogin,
+    logOut,
   };
+  useEffect(() => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        console.log(currentUser);
+      } else {
+        console.log("logged out");
+      }
+    });
+  }, []);
   return (
     <div>
       <AuthContext.Provider value={AuthInfo}>{children}</AuthContext.Provider>
