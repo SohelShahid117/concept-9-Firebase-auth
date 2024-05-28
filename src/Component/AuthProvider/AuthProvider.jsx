@@ -35,6 +35,7 @@ const AuthProvider = ({ children }) => {
     //   console.log(error);
     // });
   };
+
   const googleProvider = new GoogleAuthProvider();
   const googleLogin = () => {
     return signInWithPopup(auth, googleProvider);
@@ -58,6 +59,7 @@ const AuthProvider = ({ children }) => {
     fbLogin,
     logOut,
   };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {

@@ -23,21 +23,25 @@ const Login = () => {
 
     loginUser(email, password);
   };
+
   const handleGoogleLogin = () => {
     googleLogin()
       .then((result) => setUser(result.user))
       .catch((error) => console.log(error.message));
   };
+
   const handleFbLogin = () => {
     fbLogin()
       .then((result) => setUser(result.user))
       .catch((error) => console.log(error));
   };
+
   useEffect(() => {
     if (user) {
       navigate(location.state);
     }
   }, [user]);
+
   return (
     <div className="w-[40%] min-w-[500px] mx-auto border-2 border-red-500 p-5">
       <div className="w-[100%] text-center">

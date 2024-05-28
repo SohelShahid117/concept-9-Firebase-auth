@@ -45,6 +45,7 @@ const Register = () => {
       // .catch((error) => console.log(error));
       .catch((error) => setError(error.message));
   };
+
   return (
     <div className="w-[40%] min-w-[500px] mx-auto border-2 border-red-500 p-5">
       <div className="w-[100%] text-center">
